@@ -1,4 +1,4 @@
-
+import os
 from flask import Flask, render_template, request, session, redirect
 import sqlite3
 
@@ -261,4 +261,5 @@ def logout():
 if __name__ == '__main__':
     crear_tablas()
     insertar_registros_tipocartera()
-    app.run(debug=True, port=5000)
+    app.run(debug=True, host="0.0.0.0", 
+          port=os.getenv("PORT", default=5000))

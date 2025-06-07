@@ -1,0 +1,57 @@
+{% include 'navegation2.html' %}
+<link
+  rel="stylesheet"
+  href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+/>
+
+<div class="container mt-5">
+  <h2>Lista de Carteras</h2>
+
+  <form method="GET" action="/consultar-carteras" class="form-inline mb-3">
+    <label for="tipoFiltro" class="mr-2">Filtrar por tipo:</label>
+    <select name="tipoFiltro" id="tipoFiltro" class="form-control mr-2">
+      <option value="">Todos</option>
+      {% for tipo in tipos %}
+      <option value="{{ tipo['CODTIPCAR'] }}" {% if tipoFiltro == tipo['CODTIPCAR'] %}selected{% endif %}>{{ tipo['NOMBTIPCAR'] }}</option>
+      {% endfor %}
+    </select>
+    <button type="submit" class="btn btn-primary">Filtrar</button>
+  </form>
+
+  <table class="table table-bordered table-striped mt-3">
+    <thead class="thead-dark">
+      <tr>
+        <th>ID</th>
+        <th>Descripción</th>
+        <th>Precio</th>
+        <th>Fecha</th>
+        <th>Tipo</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for cartera in carteras %}
+      <tr>
+        <td>{{ cartera['CODCAR'] }}</td>
+        <td>{{ cartera['DESCRIPCAR'] }}</td>
+        <td>{{ cartera['PRECIOCAR'] }}</td>
+        <td>{{ cartera['FECHACAR'] }}</td>
+        <td>{{ cartera['NOMBTIPCAR'] }}</td>
+        <td>
+          <a
+            href="/editar-cartera/{{ cartera['CODCAR'] }}"
+            class="btn btn-warning btn-sm"
+            >Modificar</a
+          >
+          <a
+            href="/eliminar-cartera/{{ cartera['CODCAR'] }}"
+            class="btn btn-danger btn-sm"
+            onclick="return confirm('¿Estás seguro de eliminar esta cartera?');"
+            >Eliminar</a
+          >
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>

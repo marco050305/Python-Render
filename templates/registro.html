@@ -1,0 +1,53 @@
+{% include ('navegation.html') %}
+
+<!--* FORMULARIO DEL REGISTRO -->
+<style>
+  .caja-botones {
+    margin: 3%;
+    display: flex;
+    justify-content: center;
+  }
+  .caja-botones button {
+    margin: 0 10px; /* margen izquierdo y derecho */
+  }
+</style>
+<div class="caja">
+  <!--* IMPORTANTE: action = "crear-registro" -->
+  <form class="form-control" action="crear-registro" method="post">
+    <h2 class="text-center">Registro</h2>
+    <div class="form-group">
+      <label for="exampleInputEmail1">Email address</label>
+      <input
+        type="email"
+        class="form-control"
+        id="exampleInputEmail1"
+        aria-describedby="emailHelp"
+        placeholder="Enter email"
+        name="txtCorreo"
+      />
+      <small id="emailHelp" class="form-text text-muted"
+        >We'll never share your email with anyone else.</small
+      >
+    </div>
+    <div class="form-group">
+      <label for="exampleInputPassword1">Password</label>
+      <input
+        type="password"
+        class="form-control"
+        id="exampleInputPassword1"
+        placeholder="Password"
+        name="txtPassword"
+      />
+    </div>
+
+    <div class="caja-botones">
+      <button type="submit" class="btn btn-success">Registrar</button>
+    </div>
+    <br />
+    {% if mensaje %}
+    <div class="alert alert-danger" role="alert">{{ mensaje }}</div>
+    {% endif %} {% if mensaje2 %}
+    <div class="alert alert-danger" role="alert">{{ mensaje2 }}</div>
+    {% endif %}
+  </form>
+</div>

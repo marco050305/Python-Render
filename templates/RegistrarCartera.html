@@ -1,0 +1,64 @@
+{% include ('navegation2.html') %}
+<style>
+  .contenedor1 {
+    margin-right: 30%;
+    margin-left: 30%;
+    margin-top: 5%;
+  }
+</style>
+<div class="contenedor1">
+  <form action="/guardar-cartera" method="POST">
+    <div class="form-group">
+      <label for="descripcion">Descripción</label>
+      <textarea
+        class="form-control"
+        id="descripcion"
+        name="descripcion"
+        rows="4"
+        placeholder="Ingrese una descripción..."
+        required
+      ></textarea>
+    </div>
+
+    <div class="form-group">
+      <label for="precio">Precio</label>
+      <input
+        type="text"
+        class="form-control"
+        id="precio"
+        name="precio"
+        required
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="fecha">Fecha</label>
+      <input
+        type="date"
+        class="form-control"
+        id="fecha"
+        name="fecha"
+        required
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="tipo">Tipo de Cartera</label>
+      <select class="form-control" id="tipo" name="tipo" required>
+        <option value="">Seleccione un tipo</option>
+        {% for tipo in tipos %}
+        <option value="{{ tipo['CODTIPCAR'] }}">
+          {{ tipo['NOMBTIPCAR'] }}
+        </option>
+        {% endfor %}
+      </select>
+    </div>
+    <br />
+    <button type="submit" class="btn btn-primary">Guardar Cartera</button>
+  </form>
+  <br />
+  <br />
+  {% if mensaje %}
+  <div class="alert alert-success">{{ mensaje }}</div>
+  {% endif %}
+</div>
